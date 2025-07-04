@@ -22,3 +22,11 @@ class Manzana(models.Model):
 
     def __str__(self):
         return self.numero
+
+class RegistroManzana(models.Model):
+    manzana = models.ForeignKey(Manzana, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Capitan, on_delete=models.CASCADE)
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Registro {self.id} - {self.manzana} por {self.usuario}"
