@@ -16,3 +16,9 @@ class Zona(models.Model):
     def __str__(self):
         return self.nombre
 
+class Manzana(models.Model):
+    zona = models.ForeignKey(Zona, on_delete=models.CASCADE)
+    numero = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.numero
