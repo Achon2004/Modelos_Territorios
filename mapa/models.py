@@ -30,3 +30,12 @@ class RegistroManzana(models.Model):
 
     def __str__(self):
         return f"Registro {self.id} - {self.manzana} por {self.usuario}"
+    
+class HistorialCambio(models.Model):
+    registro = models.ForeignKey(RegistroManzana, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Capitan, on_delete=models.CASCADE)
+    accion = models.CharField(max_length=200)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.accion} - {self.fecha}"
