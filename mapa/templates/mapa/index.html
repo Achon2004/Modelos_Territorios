@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa SVG Interactivo</title>
+  <style>
+    svg path {
+      cursor: pointer;
+      transition: fill 0.3s;
+    }
+
+    svg path:hover {
+      opacity: 0.7;
+      stroke: #000;
+      stroke-width: 1px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Mapa Interactivo</h2>
+
+<div id="mapa-container">
+  {% include 'mapa/mapa_svg.html' %}
+</div>
+
+<script>
+  // Seleccionar todas las zonas
+  document.querySelectorAll('svg path').forEach(zona => {
+    zona.addEventListener('mouseover', () => {
+      console.log("Zona:", zona.id);
+    });
+
+    zona.addEventListener('click', () => {
+      alert("Seleccionaste la zona: " + zona.id);
+      // Aquí puedes actualizar contenido, mostrar zoom, etc.
+    });
+  });
+</script>
+
+</body>
+</html>
